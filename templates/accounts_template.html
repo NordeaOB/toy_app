@@ -18,17 +18,16 @@
       </div>
     {% endif %}
     {% if error %}
-          <div class="card-panel red lighten-1">
-            {{response}}
-          </div>
+      <div class="card-panel red lighten-1">
+        {{response}}
+      </div>
     {% else %}
-          {% if response %}
-            <div class="card-panel green lighten-1">
-            Request was successful!
-          </div>
-          {% endif %}
+      {% if response %}
+        <div class="card-panel green lighten-1">
+          Request was successful!
+        </div>
+      {% endif %}
     {% endif %}
-
     <div class="card-panel">
       <div class="row">
         <form action="{{ url_for('accounts') }}" method=post class="col s12">
@@ -49,18 +48,20 @@
       {% if response %}
         {% if response.response %}
           {% for entry in response.response.accounts %}
-            <div class="card-panel blue lighten-2">
-            <h5>Account details</h5>
-            IBAN: {{entry.account.identification.iban}} <br />
-            CURRENCY: {{entry.account.currency}} <br />
-            COUNTRY: {{entry.account.identification.country}} <br />
-            OWNER: {{entry.account.owner.name}} <br />
-            <br />
-            {% for balance in entry.balances %}
-              <hr />
-              BALANCE AMOUNT: {{balance.amount}} <br />
-              BALANCE TYPE: {{balance.type}} <br />
-            {% endfor %}
+            <div class="card-panel green lighten-2">
+              <h5>Account details</h5>
+              IBAN: {{entry.account.identification.iban}} <br />
+              CURRENCY: {{entry.account.currency}} <br />
+              COUNTRY: {{entry.account.identification.country}} <br />
+              OWNER: {{entry.account.owner.name}} <br />
+              <br />
+              {% for balance in entry.balances %}
+                <hr />
+                BALANCE AMOUNT: {{balance.amount}} <br />
+                BALANCE TYPE: {{balance.type}} <br />
+              {% endfor %}
+              Account Details: <a href="{{ url_for('account', account_id=entry.id) }}">Click!</a> <br />
+              Transactions: <a href="{{ url_for('transactions', account_id=entry.id) }}">Click!</a> <br />
             </div>
           {% endfor %}
         {% endif %}

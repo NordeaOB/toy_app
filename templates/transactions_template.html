@@ -18,17 +18,16 @@
       </div>
     {% endif %}
     {% if error %}
-          <div class="card-panel red lighten-1">
-            {{response}}
-          </div>
+      <div class="card-panel red lighten-1">
+        {{response}}
+      </div>
     {% else %}
-          {% if response %}
-            <div class="card-panel green lighten-1">
-            Request was successful!
-          </div>
-          {% endif %}
+      {% if response %}
+        <div class="card-panel green lighten-1">
+          Request was successful!
+        </div>
+      {% endif %}
     {% endif %}
-
     <div class="card-panel">
       <div class="row">
         <form action="{{ url_for('transactions', account_id=account_id) }}" method=post class="col s12">
@@ -48,18 +47,17 @@
       <code>
       {% if response %}
         {% for entry in response.response.transactions %}
-        <div class="card-panel blue lighten-2">
+          <div class="card-panel blue lighten-2">
             <h5>Transaction</h5>
             CURRENCY: {{entry.amount.currency}} <br />
             VALUE: {{entry.amount.value}} <br />
             DATE: {{entry.bookingDate.date}} <br />
             {% if entry.entryDetails.transactionDetails.relatedParties.debtor %}
-            DEBTOR: {{entry.entryDetails.transactionDetails.relatedParties.debtor.name}} <br />
+              DEBTOR: {{entry.entryDetails.transactionDetails.relatedParties.debtor.name}} <br />
             {% else %}
-            CREDITOR: {{entry.entryDetails.transactionDetails.relatedParties.creditor.name}} <br />
+              CREDITOR: {{entry.entryDetails.transactionDetails.relatedParties.creditor.name}} <br />
             {% endif %}
-
-        </div>
+          </div>
         {% endfor %}
       {% endif %}
       </code>
