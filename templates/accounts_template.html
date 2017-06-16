@@ -1,0 +1,71 @@
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.2/css/materialize.min.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.2/js/materialize.min.js"></script>
+{% block body %}
+  <div class="container">
+    <nav>
+      <div class="nav-wrapper teal">
+        <a href="#" class="brand-logo">{{title}}</a>
+      </div>
+    </nav>
+    {% if warning %}
+      <div class="card-panel yellow lighten-2">
+        {{warning}}
+      </div>
+    {% endif %}
+    {% if info %}
+      <div class="card-panel green lighten-2">
+        {{info}}
+      </div>
+    {% endif %}
+    {% if error %}
+          <div class="card-panel red lighten-1">
+            {{response}}
+          </div>
+    {% else %}
+          {% if response %}
+            <div class="card-panel green lighten-1">
+            Request was successful!
+          </div>
+          {% endif %}
+    {% endif %}
+
+    <div class="card-panel">
+      <div class="row">
+        <form action="{{ url_for('accounts') }}" method=post class="col s12">
+          <div class="row">
+            <div class="input-field col s6">
+              <input id="access_token" name="access_token" type="text" class="validate">
+              <label for="access_token" class="active">Access Token</label>
+            </div>
+          </div>
+          <div class="row">
+            <button class="btn waves-effect waves-light" type="submit" name="action">
+            <i class="material-icons right">Send!</i>
+            </button>
+          </div>
+        </form>
+      </div>
+      <code>
+      {% if response %}
+        {% if response.response %}
+          {% for entry in response.response.accounts %}
+            <div class="card-panel blue lighten-2">
+            <h5>Account details</h5>
+            IBAN: {{entry.account.identification.iban}} <br />
+            CURRENCY: {{entry.account.currency}} <br />
+            COUNTRY: {{entry.account.identification.country}} <br />
+            OWNER: {{entry.account.owner.name}} <br />
+            <br />
+            {% for balance in entry.balances %}
+              <hr />
+              BALANCE AMOUNT: {{balance.amount}} <br />
+              BALANCE TYPE: {{balance.type}} <br />
+            {% endfor %}
+            </div>
+          {% endfor %}
+        {% endif %}
+      {% endif %}
+      </code>
+    </div>
+  </div>
+{% endblock %}
