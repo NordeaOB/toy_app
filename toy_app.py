@@ -5,7 +5,6 @@ app = Flask(__name__)
 # Set your apps client id and client secret here
 CLIENT_ID = "CLIENT_ID_HERE"
 CLIENT_SECRET = "CLIENT_SECRET_HERE"
-ACCESS_TOKEN = "ACCESS_TOKEN_HERE"
 API_URL = "API_URL_HERE"
 HEADERS = {'X-IBM-Client-Secret': CLIENT_SECRET, 'X-IBM-Client-Id': CLIENT_ID}
 
