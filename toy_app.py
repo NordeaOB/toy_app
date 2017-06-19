@@ -5,7 +5,7 @@ app = Flask(__name__)
 # Set your apps client id and client secret here
 CLIENT_ID = "CLIENT_ID_HERE"
 CLIENT_SECRET = "CLIENT_SECRET_HERE"
-API_URL = "API_URL_HERE"
+API_URL = "API_URL_HERE" # api url in the form https://api.url/v1
 HEADERS = {'X-IBM-Client-Secret': CLIENT_SECRET, 'X-IBM-Client-Id': CLIENT_ID}
 
 MISSING_TOKEN_MSG = 'Access token is missing!'
@@ -26,7 +26,7 @@ def check_status(r):
     return error
 
 
-@app.route('/accounts', methods=['GET', 'POST'])
+@app.route('/', methods=['GET', 'POST'])
 def accounts():
     """
     Accounts endpoint.

@@ -18,17 +18,16 @@
       </div>
     {% endif %}
     {% if error %}
-          <div class="card-panel red lighten-1">
-            {{response}}
-          </div>
+      <div class="card-panel red lighten-1">
+        {{response}}
+      </div>
     {% else %}
-          {% if response %}
-            <div class="card-panel green lighten-1">
-            Request was successful!
-          </div>
-          {% endif %}
+      {% if response %}
+        <div class="card-panel green lighten-1">
+          Request was successful!
+        </div>
+      {% endif %}
     {% endif %}
-
     <div class="card-panel">
       <div class="row">
         <form action="{{ url_for('account', account_id=account_id) }}" method=post class="col s12">
@@ -48,13 +47,13 @@
       <code>
       {% if response %}
         <div class="card-panel blue lighten-2">
-            <h5>Account details</h5>
-            ID: {{response.response.id}} <br />
-            BIC: {{response.response.financialInstitution.bic.bic}} <br />
-            NAME: {{response.response.financialInstitution.name}} <br />
-            COUNTRY: {{response.response.financialInstitution.country}} <br />
-            OWNER: {{response.response.account.owner.name}} <br />
-            STATUS: {{response.response.account.status}} <br />
+          <h5>Account details</h5>
+          ID: {{response.response.id}} <br />
+          BIC: {{response.response.financialInstitution.bic.bic}} <br />
+          NAME: {{response.response.financialInstitution.name}} <br />
+          COUNTRY: {{response.response.financialInstitution.country}} <br />
+          OWNER: {{response.response.account.owner.name}} <br />
+          STATUS: {{response.response.account.status}} <br />
         </div>
       {% endif %}
       </code>
