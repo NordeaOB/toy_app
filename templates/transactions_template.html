@@ -46,19 +46,21 @@
       </div>
       <code>
       {% if response %}
-        {% for entry in response.response.transactions %}
-          <div class="card-panel blue lighten-2">
-            <h5>Transaction</h5>
-            CURRENCY: {{entry.amount.currency}} <br />
-            VALUE: {{entry.amount.value}} <br />
-            DATE: {{entry.bookingDate.date}} <br />
-            {% if entry.entryDetails.transactionDetails.relatedParties.debtor %}
-              DEBTOR: {{entry.entryDetails.transactionDetails.relatedParties.debtor.name}} <br />
-            {% else %}
-              CREDITOR: {{entry.entryDetails.transactionDetails.relatedParties.creditor.name}} <br />
-            {% endif %}
-          </div>
-        {% endfor %}
+        {% if response.response %}
+          {% for entry in response.response.transactions %}
+            <div class="card-panel blue lighten-2">
+              <h5>Transaction</h5>
+              CURRENCY: {{entry.amount.currency}} <br />
+              VALUE: {{entry.amount.value}} <br />
+              DATE: {{entry.bookingDate.date}} <br />
+              {% if entry.entryDetails.transactionDetails.relatedParties.debtor %}
+                DEBTOR: {{entry.entryDetails.transactionDetails.relatedParties.debtor.name}} <br />
+              {% else %}
+                CREDITOR: {{entry.entryDetails.transactionDetails.relatedParties.creditor.name}} <br />
+              {% endif %}
+            </div>
+          {% endfor %}
+        {% endif %}
       {% endif %}
       </code>
     </div>
