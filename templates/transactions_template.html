@@ -29,34 +29,19 @@
       {% endif %}
     {% endif %}
     <div class="card-panel">
-      <div class="row">
-        <form action="{{ url_for('transactions', account_id=account_id) }}" method=post class="col s12">
-          <div class="row">
-            <div class="input-field col s6">
-              <input id="access_token" name="access_token" type="text" class="validate">
-              <label for="access_token" class="active">Access Token</label>
-            </div>
-          </div>
-          <div class="row">
-            <button class="btn waves-effect waves-light" type="submit" name="action">
-            <i class="material-icons right">Send!</i>
-            </button>
-          </div>
-        </form>
-      </div>
       <code>
       {% if response %}
         {% if response.response %}
           {% for entry in response.response.transactions %}
             <div class="card-panel blue lighten-2">
               <h5>Transaction</h5>
-              CURRENCY: {{entry.amount.currency}} <br />
-              VALUE: {{entry.amount.value}} <br />
-              DATE: {{entry.bookingDate.date}} <br />
-              {% if entry.entryDetails.transactionDetails.relatedParties.debtor %}
-                DEBTOR: {{entry.entryDetails.transactionDetails.relatedParties.debtor.name}} <br />
+              CURRENCY: {{entry.currency}} <br />
+              VALUE: {{entry.amount}} <br />
+              DATE: {{entry.bookingDate}} <br />
+              {% if entry._type == 'CreditTransaction' %}
+                FROM: {{entry.debtorName}} <br />
               {% else %}
-                CREDITOR: {{entry.entryDetails.transactionDetails.relatedParties.creditor.name}} <br />
+                TO: {{entry.creditorName}} <br />
               {% endif %}
             </div>
           {% endfor %}
